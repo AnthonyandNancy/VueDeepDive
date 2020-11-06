@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <div>
+        hello
+    </div>
+</div>
+
+<script>
+    let data={
+        msg:'hellovue',
+        count:0
+    }
+    let vm=new Proxy(data,{
+        get(target, key) {
+            console.log('get key', target,key,target[key])
+        },
+        set(target, key,newValue) {
+            console.log('set ket', target,key,target[key],newValue)
+            if (target[key]===newValue){return}
+            target[key]=newValue
+            document.querySelector("#app").textContent=target[key]
+        }
+
+    })
+
+
+
+    //测试
+    vm.msg='hhhhhhhh'
+    console.log(vm.msg)
+
+</script>
+
+
+</body>
+</html>
