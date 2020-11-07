@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+</head>
+<body>
+<div id="app">
+    <div>{{msg}}</div>
+</div>
+
+
+<script src="js/observer.js"></script>
+<script src="js/vue.js"></script>
+
+<script>
+    let vm=new Vue({
+        el:'#app',
+        data:{
+            msg:'jello',
+            person:{
+                name:'zs'
+            }
+        }
+
+    })
+
+    vm.msg={test:'你好'}
+    console.dir(vm)
+</script>
+</body>
+</html>
