@@ -1,5 +1,6 @@
 class Observer {
     constructor(data) {
+        // console.log(data,'>>>>Observer')
         this.walk(data)
     }
     walk(data){

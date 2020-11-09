@@ -1,5 +1,6 @@
 class Vue {
     constructor(options) {
+        // console.log(options,'>>>>vue')
         //1`通过属性保存选项数据
         this.$options=options || {}
         this.$data=options.data||{}
