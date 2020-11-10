@@ -14,6 +14,7 @@ class Wachter {
 
     //当数据发生变化的时候更新视图
     update(){
+        console.log('数据发生了变价')
         let newValue=this.vm[this.key]
         if (this.oldValue===newValue){
             return

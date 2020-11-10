@@ -25,10 +25,6 @@ class Compiler {
 
 
     }
-
-
-
-
     //编译元素节点,处理指令
     compileElement(node){
         Array.from(node.attributes).forEach(attr=>{
@@ -45,7 +41,7 @@ class Compiler {
 
     update(node,key,attrName){
         let updateFn=this[attrName+'Updater']
-        console.log(attrName)
+        // console.log(attrName)
         updateFn &&updateFn(node,this.vm[key])
     }
 
@@ -56,10 +52,6 @@ class Compiler {
     modelUpdater(node,value){
         node.value=value
     }
-
-
-
-
     //编译文本节点,处理差值表达式
     compileText(node){
 
@@ -69,7 +61,13 @@ class Compiler {
         if (reg.test(value)){
             let key=RegExp.$1.trim()
             node.textContent=value.replace(reg,this.vm[key])
+            //创建wacther对象
+            new Wachter(this.vm,key,(newValue)=>{
+                console.log('创建wacther对象',newValue)
+                node.textContent=newValue
+            })
         }
+
     }
     //判断元素属性是否都是指令
     isDirective(attrName){
