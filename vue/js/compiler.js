@@ -42,15 +42,26 @@ class Compiler {
     update(node,key,attrName){
         let updateFn=this[attrName+'Updater']
         // console.log(attrName)
-        updateFn &&updateFn(node,this.vm[key])
+        updateFn &&updateFn.call(this,node,this.vm[key],key)
+
     }
 
     //处理v-text指令
-    textUpdater(node,value){
+    textUpdater(node,value,key){
         node.textContent=value
+        //创建wacther对象
+        new Wachter(this.vm,key,(newValue)=>{
+            // console.log('创建wacther对象',newValue)
+            node.textContent=newValue
+        })
     }
-    modelUpdater(node,value){
+    modelUpdater(node,value,key){
         node.value=value
+        //创建wacther对象
+        new Wachter(this.vm,key,(newValue)=>{
+            // console.log('创建wacther对象',newValue)
+            node.value=newValue
+        })
     }
     //编译文本节点,处理差值表达式
     compileText(node){
@@ -63,7 +74,7 @@ class Compiler {
             node.textContent=value.replace(reg,this.vm[key])
             //创建wacther对象
             new Wachter(this.vm,key,(newValue)=>{
-                console.log('创建wacther对象',newValue)
+                // console.log('创建wacther对象',newValue)
                 node.textContent=newValue
             })
         }
