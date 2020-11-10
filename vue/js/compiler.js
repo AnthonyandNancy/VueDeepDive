@@ -62,6 +62,11 @@ class Compiler {
             // console.log('创建wacther对象',newValue)
             node.value=newValue
         })
+
+        //双向绑定
+        node.addEventListener('input',()=>{
+            this.vm[key]=node.value
+        })
     }
     //编译文本节点,处理差值表达式
     compileText(node){
