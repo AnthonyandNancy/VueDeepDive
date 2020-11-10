@@ -13,12 +13,16 @@ class Observer {
     }
     defineReactive(obj,key,val){
         var that=this
+        //负责收集依赖,并发送通知
+        let dep=new Dep()
         //当data里面的数据是对象的时候,并没有getter和setter
         this.walk(val)
         Object.defineProperty(obj,key,{
             enumerable:true,
             configurable:true,
             get() {
+                //收集依赖/
+                Dep.target&&dep.addSub(Dep.target)
                 return val
             },
             set(newValue) {
@@ -27,6 +31,7 @@ class Observer {
                 //当用户重新设置值的时候,并没有getter和setter
                 that.walk(newValue)
                 //发送通知
+                dep.notify()
             }
         })
     }
