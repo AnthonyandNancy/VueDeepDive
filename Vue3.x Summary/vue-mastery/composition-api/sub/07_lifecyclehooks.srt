@@ -1,0 +1,371 @@
+﻿1
+00:00:03,700 --> 00:00:06,440
+You're probably already familiar with 
+你可能已经熟悉了
+
+2
+00:00:06,880 --> 00:00:07,200
+the Vue LifeCycle methods
+Vue的生命周期
+
+3
+00:00:07,300 --> 00:00:08,240
+like beforeCreate
+像 beforeCreate
+
+4
+00:00:08,840 --> 00:00:09,620
+created
+
+
+5
+00:00:10,200 --> 00:00:11,020
+beforeMount
+
+
+6
+00:00:11,640 --> 00:00:12,400
+mounted 
+
+
+7
+00:00:13,160 --> 00:00:14,160
+beforeUpdate
+
+
+8
+00:00:14,880 --> 00:00:15,680
+updated
+
+
+9
+00:00:16,060 --> 00:00:17,100
+beforeDestroy and destroyed
+
+
+10
+00:00:17,560 --> 00:00:21,040
+if you're not familiar with these 
+如果你不熟悉这些
+
+11
+00:00:21,320 --> 00:00:21,860
+pause the video, read the descriptions
+停止看这个视频,看官方文档
+
+12
+00:00:21,960 --> 00:00:22,000
+Moving on
+然后我们继续
+
+13
+00:00:22,100 --> 00:00:25,000
+There's some additional Vue2.0 LifeCycle methods 
+还有一些Vue2.0其他的生命周期的方法
+
+14
+00:00:25,100 --> 00:00:26,900
+which were released in recent versions 
+在最新发布的版本中
+
+15
+00:00:26,990 --> 00:00:27,999
+I want to make sure you're familiar with
+为了确认你熟悉(在这里说一下)
+
+16
+00:00:28,760 --> 00:00:29,840
+The first is activated
+第一个是activated
+
+17
+00:00:29,960 --> 00:00:32,300
+This is used when you have dynamic components
+当您有动态组件时会用到它
+
+18
+00:00:32,480 --> 00:00:33,560
+using <keep-alive></keep-alive>
+使用<keep-alive></keep-alive>
+
+19
+00:00:33,700 --> 00:00:36,320
+when the component inside <keep-alive> is toggled on
+当<keep-alive>里面的组件激活时被触发
+
+20
+00:00:36,580 --> 00:00:38,020
+Then there is deactivated
+还有一个是deactivated
+
+21
+00:00:38,260 --> 00:00:41,100
+when the component inside <keep-alive> is toggled off
+被<keep-alive>缓存的组件停用时调用
+
+22
+00:00:41,500 --> 00:00:42,900
+And errorCaptured
+还有errorCaptured
+
+23
+00:00:42,940 --> 00:00:43,720
+This is called when an error
+会在后代组件中错误被捕获时调用
+
+24
+00:00:43,800 --> 00:00:47,120
+from any descendant component is captured
+会在后代组件中错误被捕获时调用
+
+25
+00:00:47,460 --> 00:00:49,000
+If you want to learn more about how these work   
+如果想了解更多细节
+
+26
+00:00:49,460 --> 00:00:49,960
+check out the documentation
+还得好好看文档
+
+27
+00:00:50,460 --> 00:00:52,800
+let's now dive into changes with Vue3.0
+但是现在请让我们了解Vue3.0的变化
+
+28
+00:00:54,060 --> 00:00:56,780
+First off,beforeDestroy LifeCycle Method
+首先，生命周期beforeDestroy
+
+29
+00:00:57,100 --> 00:01:00,740
+can also be written as beforeUnmount
+也可以写成beforeUnmount
+
+30
+00:01:01,040 --> 00:01:01,880
+Both should work
+两个作用是一样的
+
+31
+00:01:02,220 --> 00:01:05,620
+Also destroyed you can also use unmounted
+同样的destroyed，也可以用unmounted
+
+32
+00:01:05,820 --> 00:01:06,300
+These should both work with Vue3.0 
+这两种生命周期都可以用到Vue3.0
+
+33
+00:01:06,900 --> 00:01:10,300
+and when I asked Evan You why this change
+我问过小右为什么这么改
+
+34
+00:01:10,540 --> 00:01:14,160
+it's pretty much because it's a better naming convention
+这在很大程度上是为了更好的命名约定
+
+35
+00:01:14,380 --> 00:01:17,380
+We mount the component and we unmount components
+我们挂载组件并且我们卸载组件
+
+36
+00:01:17,980 --> 00:01:19,480
+When we're using the Composition API
+当我们使用Composition API
+
+37
+00:01:20,000 --> 00:01:22,000
+and we need LifeCycle methods
+且需要用到生命周期方法
+
+38
+00:01:22,400 --> 00:01:24,900
+We simply add "on" to the callback name 
+我们只需要在生命周期前面添加"on"
+
+39
+00:01:25,020 --> 00:01:26,200
+inside the setup method
+在setup内部
+
+40
+00:01:26,820 --> 00:01:29,420
+So here's what that might look like 
+所以会变成什么样呢
+
+41
+00:01:28,420 --> 00:01:29,420
+for beforeMount and onMounted
+对于beforeMount和onMounted
+
+42
+00:01:29,480 --> 00:01:33,780
+We need to import them and then we can simply use them
+我们只需要引入这些生命周期就可以使用
+
+43
+00:01:32,140 --> 00:01:36,420
+sending in anonymous functions inside of our setup method
+在setup方法内部的匿名函数里也可以
+
+44
+00:01:37,100 --> 00:01:39,520
+Here's list of all the different LifeCycle methods
+这是所有生命周期方法不同点的列表
+
+45
+00:01:39,620 --> 00:01:41,620
+we can use inside the setup method
+我们可以在setup方法内部使用
+
+46
+00:01:42,680 --> 00:01:43,920
+if you're being observant
+如果你细心观察
+
+47
+00:01:44,020 --> 00:01:46,320
+you might notice that two are missing
+你可能注意到有两个不见了
+
+48
+00:01:47,160 --> 00:01:50,360
+beforeCreate and created are not needed 
+当我们使用composition API时beforeCreate和created不需要了
+
+49
+00:01:50,960 --> 00:01:52,000
+when we're using the composition API
+当我们使用composition API时beforeCreate和created不需要了
+
+50
+00:01:52,100 --> 00:01:53,010
+and we have that setup method
+我们有setup方法
+
+51
+00:01:53,720 --> 00:01:55,520
+this is because beforeCreate is called right before setup
+这是因为beforeCreate在setup之前就被调用了
+
+54
+00:01:55,680 --> 00:01:57,520
+(译者注：实测不是这样，setup早于beforeCreate和created)
+
+55
+00:01:57,800 --> 00:01:59,560
+and then created is called right after setup
+然后created在setup之后被调用
+
+56
+00:01:59,560 --> 00:02:00,620
+
+57
+00:02:01,000 --> 00:02:03,880
+ code that would normally be put inside of these hooks
+通常放在这些钩子中的代码
+
+58
+00:02:04,320 --> 00:02:06,580
+ now being placed inside of our setup method
+现在被放置在我们的setup方法内部
+
+59
+00:02:07,220 --> 00:02:09,060
+ example here would be AP calls
+这里的例子是AP调用
+
+60
+00:02:09,440 --> 00:02:13,620
+ we put those inside of beforeCreate or created and instead
+我们把它们从beforeCreate或created
+
+61
+00:02:13,900 --> 00:02:15,480
+ you can call them from our setup method
+移至setup内部调用
+
+62
+00:02:15,880 --> 00:02:21,440
+ are two new vue3 lifecycle methods the first of which is on renderTracked
+vue3还有两个新的生命周期方法，其中一个是renderTracked
+
+63
+00:02:21,880 --> 00:02:27,100
+ this is called when a reactive dependency is first being accessed in the render function during render
+该钩子会在渲染函数首次访问响应式依赖的时候调用
+
+64
+00:02:27,320 --> 00:02:28,980
+ meaning this dependency will now be
+意味着这个依赖现在
+
+65
+00:02:29,100 --> 00:02:29,560
+ I
+我
+
+66
+00:02:29,680 --> 00:02:30,260
+rangers
+游骑兵
+
+67
+00:02:30,900 --> 00:02:35,300
+ hook can be helpful when we want to see which dependencies are being tracked
+当我们想查看正在跟踪哪些依赖项时，钩子很有用
+
+68
+00:02:35,620 --> 00:02:36,900
+ debugging purposes
+调试目的
+
+69
+00:02:37,440 --> 00:02:39,320
+ also there's on rendered trigger
+也有一个渲染触发器
+
+70
+00:02:39,660 --> 00:02:46,120
+ this is called when a new render is triggered allowing you to inspect which dependency triggered a component to re render
+当触发新渲染时，将调用此选项，允许您检查哪个依赖项触发了要重新渲染的组件
+
+71
+00:02:46,380 --> 00:02:49,460
+ as you can imagine this is going to make the bugging a lot easier
+你可以想象这会让窃听变得容易得多
+
+72
+00:02:49,520 --> 00:02:52,080
+ we need to figure out which dependencies
+我们需要找出哪些依赖关系
+
+73
+00:02:52,180 --> 00:02:53,300
+ are being tracked
+正在被跟踪
+
+74
+00:02:53,740 --> 00:02:57,420
+ in which dependencies are triggering our component to re render
+其中依赖关系将触发组件重新渲染
+
+75
+00:02:57,600 --> 00:02:59,840
+ also can be good when we're doing performance optimism
+同时当我们做性能优化时很有用
+
+76
+00:03:00,640 --> 00:03:04,480
+ really excited to see what sort of optimization tools can be created
+真的很兴奋能看到它们能催生出什么样的优化工具
+
+77
+00:03:04,720 --> 00:03:05,960
+ entering around these hooks
+真的很兴奋能看到它们能催生出什么样的优化工具

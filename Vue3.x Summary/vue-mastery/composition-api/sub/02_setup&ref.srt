@@ -1,0 +1,376 @@
+﻿
+1
+00:00:04,060 --> 00:00:08,360
+ and the previous video we looked at why the composition Napier was created
+在之前的视频中，我们看到了为什么要创建Composition API
+
+2
+00:00:09,020 --> 00:00:13,380
+ we're gonna review when to use the Composition API
+我们要回顾一下什么时候用Compostion API
+
+3
+00:00:13,800 --> 00:00:16,520
+ learn about the setup method and reactive reference
+并且了解设置方法和响应式引用
+
+4
+00:00:17,040 --> 00:00:23,800
+ I want to emphasize that the composition API is just additive it's a second way to write component
+想强调的是，Composition只是添加剂，这是编写组件的第二种方法
+
+5
+00:00:24,400 --> 00:00:28,620
+ All the previous component syntax that you're familiar with and Vue2.0
+您熟悉的所有以前的组件语法，在Vue2.0中
+
+6
+00:00:28,720 --> 00:00:31,060
+ you can still use its completely valid
+你仍然可以使用它完全有效
+
+7
+00:00:31,240 --> 00:00:34,360
+The Composition API is just a more advanced
+Composition API只是一个更高级的
+
+8
+00:00:34,640 --> 00:00:35,760
+ optional syntax
+可选语法
+
+9
+00:00:36,920 --> 00:00:39,680
+If that's the case then when should you use it
+既然如此，那你什么时候该用它呢
+
+10
+00:00:39,820 --> 00:00:41,540
+So,here we have a component
+这里我们有一个组件
+
+11
+00:00:41,740 --> 00:00:46,180
+and I might use the Composition API if I really care about good 
+我可能会使用Composition API，如果我真的在乎
+
+12
+00:00:46,340 --> 00:00:47,660
+TypeScripts support
+TypeScript 支持
+
+13
+00:00:48,500 --> 00:00:50,520
+I also might use the API
+我也可以用这个API
+
+14
+00:00:50,640 --> 00:00:52,680
+if I have a huge component
+如果我有一个很大的组件
+
+15
+00:00:52,940 --> 00:00:55,660
+and I want to organize it by feature
+我想按特点组织一下
+
+
+16
+00:00:56,760 --> 00:01:01,420
+I also might use it if I have code that needs to be reused across multiple components
+如果我有代码，我也可以使用它,它需要跨多个组件重用
+
+
+17
+00:01:02,740 --> 00:01:08,740
+And lastly if I'm simply working with the team that prefers the syntax over the regular syntax
+最后，如果我只是和一个团队一起工作，它比常规语法更喜欢这种语法
+
+18
+00:01:09,120 --> 00:01:10,440
+that might be a good enough reason
+可能是个很好的理由
+
+19
+00:01:10,980 --> 00:01:18,260
+ I'm about to show you is quite simple and you might be wondering why would I use the composition API in this case
+我要向你们展示的是非常简单的，你们可能会想知道为什么我要在这个例子中使用composition API
+
+20
+00:01:18,340 --> 00:01:22,700
+ you might be right my goal here was to make it as easy to learn as possible
+你也许是对的我在这里的目标是让它尽可能容易学习
+
+
+21
+00:01:24,380 --> 00:01:27,520
+Let's take a look at a component using the regular syntax
+看看使用常规语法的组件
+
+22
+00:01:27,940 --> 00:01:30,060
+ we're printing out the capacity of an event
+我们正在打印一个event的capacity
+
+23
+00:01:31,140 --> 00:01:33,100
+and capacity is in the data option
+capacity在data这个data的option中
+
+24
+00:01:33,260 --> 00:01:34,220
+making it reactive
+它就变成了响应式的数据了
+
+25
+00:01:35,220 --> 00:01:37,720
+In our browser, we see Capacity:3
+在我们的浏览器中，我们看到Capacity为3
+
+
+27
+00:01:39,720 --> 00:01:44,920
+How would you write this using the Composition API
+我们如何使用Composition API编写这个呢
+
+
+28
+00:01:44,960 --> 00:01:46,940
+Well,first we need to create that setup method
+我们需要创建setup方法
+
+29
+00:01:47,700 --> 00:01:54,400
+The setup method executes before components props data methods computer properties and life cycle map
+setup方法在组件属性数据方法计算机属性和生命周期映射之前执行
+
+30
+00:01:55,440 --> 00:01:58,920
+It also does not have access to this
+它也不能访问这个
+
+31
+00:01:59,700 --> 00:02:02,540
+So our code inside here is gonna look different
+所以里面的代码看起来会不同
+
+32
+00:02:04,300 --> 00:02:07,120
+setup method also has two optional arguments
+setup 方法还具有两个可选参数
+
+32
+00:02:07,360 --> 00:02:08,800
+The first is props,
+首先是props
+
+33
+00:02:09,280 --> 00:02:11,940
+ which is reactive and can be watched
+它是反应性的，可以观看
+
+34
+00:02:12,320 --> 00:02:14,260
+So let me show you what that might look like
+让我给你看看那是什么样子
+
+35
+00:02:15,060 --> 00:02:17,640
+Here you can see I have a prop which is name
+你可以看到我有一个props，那就是名字
+
+36
+00:02:18,760 --> 00:02:21,840
+and then I declare setup with the props argument
+然后我用props参数声明setup
+
+
+37
+00:02:23,160 --> 00:02:25,260
+If I wanted to watch this prop for changes
+我想看看这个prop的变化
+
+38
+00:02:25,700 --> 00:02:27,500
+I could import watch from Vue,
+从视图导入监视
+
+39
+00:02:27,920 --> 00:02:30,420
+then I could log out to the console whenever it changes
+我可以随时注销控制台
+
+40
+00:02:34,180 --> 00:02:38,020
+The optional second argument for setup is context
+setup的可选第二个参数是context
+
+41
+00:02:38,380 --> 00:02:43,520
+We use context to access properties that we previously access with this
+使用上下文访问我们以前访问的属性
+
+
+42
+00:02:43,980 --> 00:02:46,820
+Here are the different properties that it gives us access to
+它提供给我们访问的不同属性
+
+43
+00:02:49,520 --> 00:02:50,560
+Now, back to our example
+回到我们的例子
+
+44
+00:02:52,620 --> 00:02:54,960
+Here, we need to import ref from Vue
+我们需要从Vue导入ref
+
+45
+00:02:55,160 --> 00:02:58,740
+ and then declare capacity as a constant which equals ref(3)
+然后声明容量为常数，等于ref(3)
+
+46
+00:03:01,020 --> 00:03:04,000
+The ref function creates a reactive reference
+ref函数创建一个反应引用
+
+47
+00:03:05,080 --> 00:03:07,580
+This wraps our primitive in an object
+这把我们的原语包装在一个物体里
+
+48
+00:03:07,740 --> 00:03:09,700
+allowing us to track changes
+允许我们跟踪变化
+
+49
+00:03:10,720 --> 00:03:12,960
+Previously, we were using data
+很明显我们用的是数据
+
+50
+00:03:13,220 --> 00:03:16,520
+and data was wrapping our primitives in an object for us
+数据把我们的原语包装在一个对象里
+
+51
+00:03:17,440 --> 00:03:22,040
+Now,we'are creating a reactive reference which is an object that wraps our primitive
+现在，我们正在创建一个响应式引用，它是一个包装我们的私有对象
+
+52
+00:03:22,200 --> 00:03:23,100
+ which in this case
+在这种情况下
+
+53
+00:03:23,240 --> 00:03:23,600
+ is three
+是3
+
+54
+00:03:23,900 --> 00:03:28,980
+As a side note with the composition API and the way Vue3.0 does reactivity
+作为补充说明，使用Composition API Vue3产生响应式的方式
+
+55
+00:03:29,380 --> 00:03:31,720
+ we can now declare reactive objects
+我们现在可以声明响应式对象
+
+56
+00:03:31,780 --> 00:03:33,660
+that aren't associated with the components
+与组件无关
+
+57
+00:03:33,820 --> 00:03:34,120
+which is quite powerful
+相当强大
+
+58
+00:03:37,000 --> 00:03:41,680
+ our setup method needs to return anything that needs to get access
+我们的setup方法需要返回
+
+59
+00:03:41,800 --> 00:03:42,760
+from the template
+需要从模板访问的任何内容
+
+60
+00:03:43,480 --> 00:03:44,380
+So,in this case,it's capacity
+在这个情况下，是容量
+
+61
+00:03:44,440 --> 00:03:44,860
+You might initially think this is more verbose 
+你一开始可能认为这更冗长
+
+62
+00:03:45,100 --> 00:03:45,920
+but it also makes our component more maintainable,
+但它使我们的组件更易于维护
+
+63
+00:03:46,800 --> 00:03:50,040
+ am I initially think this is more for both
+我最初是不是觉得这对双方都更合适
+
+64
+00:03:53,520 --> 00:03:56,820
+since we can control what gets exposed in our template
+因为我们可以控制模板中暴露的内容
+
+65
+00:03:57,140 --> 00:03:59,260
+ and we can more easily trace where a property is defined
+我们可以更容易地定义属性
+
+66
+00:03:59,340 --> 00:04:00,780
+In our browser,everything is working 
+在我们的浏览器中，一切正常
+
+
+67
+00:04:05,760 --> 00:04:08,960
+It's worth mentioning that this Composition API syntax
+值得一提的是，这个Composition API
+
+68
+00:04:09,080 --> 00:04:11,660
+ you can use in a Vue2.0 app by using this plug in for Vue 2
+通过使用此插件Vue2.0 可以在Vue2应用程序中使用
+
+69
+00:04:11,740 --> 00:04:13,960
+You'll want to follow the 
+你会想跟着
+
+70
+00:04:14,420 --> 00:04:17,700
+ installation options on the github page
+github页面上的安装选项
+
+71
+00:04:18,360 --> 00:04:20,660
+and then instead of importing from vue
+然后不是从Vue导入
+
+72
+00:04:21,080 --> 00:04:22,680
+you instead import from Vue/composition API
+而是从Vue/composition API导入
+
+
+73
+00:04:26,680 --> 00:04:28,400
+This is how I tested all the code I'm showing you
+这就是我测试所有代码的方法
+
+

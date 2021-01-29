@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script crossorigin="anonymous" integrity="sha512-REb0S2epbS0XtS28ifNa1haxmTZigXjB+Tx5IHCvXZndWB2RL431Vt1qONzFoe0dPwA8WGow+xxkQwhVr44nRg==" src="https://lib.baomitu.com/vue/3.0.2/vue.global.js"></script>
+    <style>
+        .el-button {
+            width: 400px;
+            height: 100px;
+            font-size: 50px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script>
+        const {
+            createApp,
+            reactive,
+            onMounted,
+            toRefs
+        } = Vue
+
+        function useColor(type, time) {
+            const state = reactive({
+                color: '#000000'
+            })
+            onMounted(() => {
+                setInterval(() => {
+                    const r = type === 'r' ? Math.floor(Math.random() * 255).toString(16) : '00'
+                    const g = type === 'g' ? Math.floor(Math.random() * 255).toString(16) : '00'
+                    const b = type === 'b' ? Math.floor(Math.random() * 255).toString(16) : '00'
+                    const color = `#${r + g +b}`
+                    state.color = color
+                }, time)
+            })
+            return toRefs(state)
+        }
+
+        const MyComponent = {
+            template: `<button type='button' class= 'el-button' :style='{background,color}'><span>全栈然叔</span></button>`,
+            setup() {
+                const {
+                    color
+                } = useColor('g', 100)
+                const {
+                    color: background
+                } = useColor('r', 100)
+
+                return {
+                    color,
+                    background,
+                }
+            }
+        }
+
+
+        createApp(MyComponent).mount('#app')
+    </script>
+</body>
+
+</html>

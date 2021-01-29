@@ -1,0 +1,140 @@
+﻿1
+00:00:04,450 --> 00:00:05,750
+Back inside our component,
+回到我们的内部
+
+2
+00:00:05,750 --> 00:00:09,320
+we're gonna add a list of the people who are attending our event.
+我们要增加一个变量来记录出席我们活动的人数
+
+3
+00:00:09,320 --> 00:00:10,470
+Here in the setup method,
+在setup方法里面
+
+4
+00:00:10,470 --> 00:00:12,370
+we're gonna add in the attending array,
+我们增加了一个attending这样的一个变量的数组
+
+5
+00:00:12,370 --> 00:00:14,300
+which is a reactive reference.
+这是响应式的ref属性
+
+6
+00:00:14,770 --> 00:00:16,670
+We'll give our template access to it.
+在template中是可以直接访问到它的
+
+7
+00:00:17,750 --> 00:00:20,420
+And then we'll print the list of those who are attending.
+然后我们输出出席的人的名字
+
+8
+00:00:21,490 --> 00:00:23,830
+Our component now looks something like this.
+组件在浏览器中式这样显示的
+
+9
+00:00:25,690 --> 00:00:28,040
+In addition to printing our capacity,
+除了在template打印capacity
+
+10
+00:00:28,040 --> 00:00:32,600
+we now want to show our users how many spaces are left in our event.
+现在，我们希望向用户显示在活动中还留有多少位置
+
+11
+00:00:33,040 --> 00:00:38,540
+so In order to calculate this, using our regular components in Synatx, we might create a computer property,
+为了计算spaceLeft，使用Vue2.0的常规语法，我们可以写一个computed属性
+
+12
+00:00:38,540 --> 00:00:41,310
+which takes the current capacity subtracted by
+它将当前capacity减去
+
+13
+00:00:41,310 --> 00:00:43,190
+the length of our attending array.
+attending的数组的长度
+
+14
+00:00:43,640 --> 00:00:46,820
+How might we do this using the composition? Api syntax?
+我们如何使用composition API 来实现这个功能?
+
+15
+00:00:47,380 --> 00:00:49,830
+I'll shorten our template to make some room.
+我把模板缩短，腾出一些空间。
+
+16
+00:00:49,830 --> 00:00:51,950
+And now inside of our set up method,
+现在在setup方法中，
+
+17
+00:00:51,950 --> 00:00:52,720
+first,
+首先，
+
+18
+00:00:52,720 --> 00:00:56,000
+we need to import the computed function.
+我们需要导入计算函数。
+
+19
+00:00:56,330 --> 00:00:57,300
+Then
+然后
+
+20
+00:00:57,300 --> 00:00:59,838
+will create a new constant called spacesLeft,
+将创建一个名为spacesLeft的新量
+
+21
+00:00:59,838 --> 00:01:03,198
+which sends into the computed function an anonymous function,
+spaceLefts将匿名函数派发到计算函数中，
+
+22
+00:01:03,330 --> 00:01:07,860
+which returns the result of taking capacity and subtracting the number of people who are attending.
+它返回的结果是capacity减去attending的length的结果
+
+23
+00:01:08,370 --> 00:01:10,494
+Notice I have to use dot value here.
+注意，这里我必须使用.value
+
+24
+00:01:10,494 --> 00:01:13,400
+Since I'm dealing with two reactive references,
+因为我要处理两个响应式的Ref
+
+25
+00:01:14,390 --> 00:01:17,562
+I'll then give the template access to this computer property.
+然后，我将给template访问这个计算机属性的权限。
+
+26
+00:01:18,880 --> 00:01:20,280
+I jump in the browser.
+我跳到了浏览器。
+
+27
+00:01:20,280 --> 00:01:22,070
+I can see that everything is working
+我看得出一切都在运转
+
+28
+00:01:22,070 --> 00:01:24,470
+with my computed property, like I'd expect.
+计算属性的使用的方式跟我预期的是一样的。
+

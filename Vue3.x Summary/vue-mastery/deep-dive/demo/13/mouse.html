@@ -1,0 +1,22 @@
+<script src="https://unpkg.com/vue@next"></script>
+<div id="app"></div>
+<script>
+    const { createApp } = Vue 
+    const App = {
+        template:`{{ x }} {{ y }}`,
+        data(){
+            return {
+                x:0,
+                y:0
+            }
+        },
+
+        mounted () {
+            window.addEventListener('mousemove',e=>{
+                this.x = e.pageX
+                this.y = e.pageY
+            })
+        }
+    }
+    createApp(App).mount('#app')
+</script>
